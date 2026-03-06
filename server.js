@@ -24,7 +24,28 @@ app.set("layout", "./layouts/layout");
 
 app.use(static)
 app.get('/', (req, res) => {
-  res.render('index', { title: "Home" })
+  const upgradeRev = {
+    upgrades: [
+      ["Flux Capacitor", "/images/upgrades/flux-cap.png"],
+      ["Flame Decals", "/images/upgrades/flame.jpg"],
+      ["Bumper Stickers", "/images/upgrades/bumper_sticker.jpg"],
+      ["Hub Caps", "/images/upgrades/hub-cap.jpg"]
+    ],
+    reviews: [
+      "So fast it's almost like travelling in time",
+      "Coolest ride on the road. (4/5)",
+      "I'm feeling McFly! (5/5)",
+      "The most futuristic ride of our day (4.5/5)",
+      "80's livin and I love it (5/5)"
+    ]
+  }
+  res.render('index', {
+    title: "Home",
+    vehicleName: "DMC Delorian",
+    vehicleDescription: "3 Cup Holders Superman doors Fuzzy dice!",
+    uprev: upgradeRev
+
+  })
 })
 
 /* ***********************
