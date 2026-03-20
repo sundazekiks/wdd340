@@ -22,4 +22,15 @@ async function getInventoryByClassificationId(classification_id) {
     }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId } 
+async function getInventoryByVehicleId(vehicleId) {
+    const data = await pool.query(`
+        SELECT *
+        FROM public.inventory
+        WHERE inv_id = $1
+        `, [vehicleId]);
+
+    return data.rows
+
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId } 

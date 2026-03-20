@@ -76,4 +76,47 @@ Util.buildClassificationGrid = async function (data) {
     return grid
 }
 
+Util.buildVehicleDetailPage = async (data) => {
+    const vehicle = data[0];
+    let container = '<div id="detail-wrapper">'
+    if (vehicle) {
+        container += `
+        <section id="vehicleTitlePic">
+            <img src=${vehicle.inv_image} alt="${vehicle.inv_model} profile pic">
+            <div id="priceName">
+                <h1 id="vehicleName">${vehicle.inv_make} 
+                    ${vehicle.inv_model} 
+                    ${vehicle.inv_year} 
+                </h1>
+                <p> $ ${new Intl.NumberFormat('en-Us').format(vehicle.inv_price)}</p>
+            </div>
+        </section>
+        `
+        container += `
+        <section>
+            <p>
+                ${vehicle.inv_description}
+            </p>
+            <section id="availColors">
+                <h3>
+                <div id="colorBall"></div>
+                ${vehicle.inv_color}
+                </h3>
+            </section>
+        </section>
+        `
+    }
+    container += '</div>'
+    return container;
+}
+
+
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 module.exports = Util;

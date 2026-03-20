@@ -149,6 +149,11 @@ nav ul {
   width: 100%;
 }
 
+#detail-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 @media screen and (min-width: 780px) and (max-width: 900px) {
   .cta-box {
   position: absolute;
@@ -160,21 +165,33 @@ nav ul {
   gap: 10px;
   flex-direction: column;
   background: rgba(250, 250, 250, 0.8);
-}
-#inv-display li{
-  display: flex;
-  gap: 30px;
-}
+  }
+  
+  #inv-display li{
+    display: flex;
+    gap: 30px;
+  }
 
-#inv-display img{
-  width: 100%;
-}
+  #inv-display img{
+    width: 100%;
+  }
+
+  #detail-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
 }
 
 @media screen and (max-width: 780px) and (min-width: 200px) {
   html, body {
     padding: 0;
     margin: 0;
+  }
+
+  #detail-wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .cta-box {
