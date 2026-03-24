@@ -154,6 +154,37 @@ nav ul {
   grid-template-columns: 1fr 1fr;
 }
 
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-action{
+  display: grid;
+  width: 300px;
+  padding: 30px 30px;
+  align-item: center;
+  margin: 0 auto;
+  background: var(--custom-bg2);
+  gap: 10px;
+  border-radius: 25px;
+
+  /* child elements */
+  label, p, a {
+    color: var(--custom-bg);
+  }
+  a{
+    text-decoration: underline;
+  }
+  a:hover{
+    color: blue;
+  }
+}
+
+input[type="email"], input[name="password"] {
+  padding: 5px;
+}
+
 @media screen and (min-width: 780px) and (max-width: 900px) {
   .cta-box {
   position: absolute;
@@ -237,3 +268,6 @@ nav ul {
   width: 100%;
 }
 }
+
+
+
