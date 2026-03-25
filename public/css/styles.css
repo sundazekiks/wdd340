@@ -185,6 +185,30 @@ input[type="email"], input[name="password"] {
   padding: 5px;
 }
 
+input:required:invalid, input:focus:invalid {
+ background-image: url(/images/invalid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+}
+
+input:required:valid {
+ background-image: url(/images/valid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+ }
+
+ .management {
+    display: flex;
+    gap: 10px;
+ }
+
+ .management a {
+  padding: 10px 20px;
+  color: var(--custom-bg);
+  background: var(--custom-bg2);
+  border-radius: 15px;
+ }
+
 @media screen and (min-width: 780px) and (max-width: 900px) {
   .cta-box {
   position: absolute;
@@ -212,6 +236,37 @@ input[type="email"], input[name="password"] {
     flex-wrap: wrap;
   }
 
+}
+
+#class-form {
+  padding: 20px 30px;
+  background: var(--custom-bg2);
+  color: var(--custom-bg);
+  width: fit-content;
+  border-radius: 15px;
+
+  label {
+    color: color: var(--custom-bg);
+  }
+}
+
+input[name='classification-name'] {
+  padding: 5px 10px;
+}
+
+#inventory-form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  padding: 20px 30px;
+  border-radius: 15px;
+  background: var(--custom-bg2);
+  label {
+    color: var(--custom-bg);
+  }
+  
 }
 
 @media screen and (max-width: 780px) and (min-width: 200px) {

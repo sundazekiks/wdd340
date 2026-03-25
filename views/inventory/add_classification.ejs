@@ -1,0 +1,8 @@
+<h1>Add a classification</h1>
+<form action="/inv/add-classification" method="post" id="class-form">
+    <% messages() %>
+        <label for="classification-name">Classification:</label>
+        <input type="text" required placeholder="enter classification name" name="classification_name"
+            id="classification-name">
+        <input type="submit" value="Add">
+</form>

@@ -1,14 +1,16 @@
 <div class="loginWrapper">
     <h1><%- title %></h1>
+
     <form class="form-action" action="/account/register" method="post">
         <label for="account_firstname">First Name:</label>
-        <input type="text" placeholder="enter your first name" name="account_firstname">
+        <input type="text" placeholder="enter your first name" name="account_firstname" required>
         <label for="account_lastname">Last Name:</label>
-        <input type="text" placeholder="enter your last name" name="account_lastname">
+        <input type="text" placeholder="enter your last name" name="account_lastname" required>
         <label for="account_email">Email:</label>
-        <input type="email" placeholder="enter your email" name="account_email">
+        <input type="email" placeholder="enter your email" name="account_email" required>
         <label for="account_password">Password:</label>
-        <input type="password" placeholder="enter your password" name="account_password">
+        <input type="password" placeholder="enter your password" name="account_password" required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
         <input type="submit" value="Sign Up">
         <a href="/account/login">Login?</a>
     </form>

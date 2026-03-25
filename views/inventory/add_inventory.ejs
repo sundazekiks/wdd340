@@ -1,0 +1,24 @@
+<h1><%- title %></h1>
+<form action="/inv/add-inventory" method="post" id="inventory-form" enctype="multipart/form-data">
+    <label for="classification_id">Classification</label>
+    <%- classificationList %>
+        <label for="make">Make:</label>
+        <input type="text" required name="make" id="make">
+        <label for="model">Model:</label>
+        <input type="text" required name="model" id="model">
+        <label for="year">Year:</label>
+        <input type="number" required name="year" id="year">
+        <label for="description">Description:</label>
+        <input type="text" required name="description" id="description">
+        <label for="price">Price:</label>
+        <input type="number" required name="price" id="price">
+        <label for="miles">Miles:</label>
+        <input type="number" required name="miles" id="miles">
+        <label for="color">Color:</label>
+        <input type="text" required name="color" id="color">
+        <label for="image">Image:</label>
+        <input type="file" required name="image" id="image">
+        <label for="thumbnail">thumbnail:</label>
+        <input type="file" required name="thumbnail" id="thumbnail">
+        <input type="submit" value="Submit" />
+</form>
