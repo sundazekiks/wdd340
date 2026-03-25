@@ -99,12 +99,11 @@ invCont.buildAddInventory = async (req, res, next) => {
 invCont.addInventory = async (req, res, next) => {
     const [image, thumbnail] = req.files;
     const { make, model, year, description, price, miles, color, classification_id } = req.body
-    console.log(req.body)
-    const modImg = image.path.replace('/Users/travisabuton/Desktop/School Files/WDD340/public', '')
-    const modThumbnail = thumbnail.path.replace('/Users/travisabuton/Desktop/School Files/WDD340/public', '');
-    console.log(modImg, modThumbnail)
-    const add = await invModel.addInventory(make, model, year, description, modImg, modThumbnail, price, miles, color, classification_id)
-    console.log(add)
+
+    const modImg = image.path.replace('public', '');
+    const modThumb = thumbnail.path.replace('public', '');
+    const add = await invModel.addInventory(make, model, year, description, modImg, modThumb, price, miles, color, classification_id)
+
     res.redirect('/inv/add-inventory');
 }
 
