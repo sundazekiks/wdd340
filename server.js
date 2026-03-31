@@ -17,12 +17,16 @@ const inventoryRoute = require('./routes/inventoryRoute')
 const accountRoute = require('./routes/accountRoute')
 const utilities = require("./utilities/")
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+
 
 
 
 /* ***********************
  * Middleware
  * ************************/
+
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -45,12 +49,14 @@ app.use(express.static('./public'))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
+app.use(cookieParser())
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("layout", "./layouts/layout");
 
+
+app.use(utilities.checkJWTToken);
 
 
 

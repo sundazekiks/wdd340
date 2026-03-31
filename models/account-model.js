@@ -11,4 +11,16 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
 }
 
-module.exports = { registerAccount };
+async function getAccountByEmail(account_email) {
+    console.log(account_email)
+    try {
+
+        const sql = "SELECT * FROM public.account WHERE account_email = $1"
+        const result = await pool.query(sql, [account_email])
+        return result.rows[0]
+    } catch (error) {
+        console.error(error.message)
+        return;
+    }
+}
+module.exports = { registerAccount, getAccountByEmail };
