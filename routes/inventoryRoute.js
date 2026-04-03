@@ -14,6 +14,8 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
+router.get('/edit/:inv_id', utilities.handleErrors(invController.editInventoryView))
+
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
 router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildVechicleDetails));
@@ -24,10 +26,14 @@ router.get('/', utilities.handleErrors(invController.buildManagement))
 
 router.get('/add-classification', utilities.handleErrors(invController.buildAddClass))
 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 router.post('/add-classification', utilities.handleErrors(invController.addClass))
 
 router.get('/add-inventory', utilities.handleErrors(invController.buildAddInventory))
 
 router.post('/add-inventory', upload.any(), utilities.handleErrors(invController.addInventory))
+
+router.post('/update', upload.any(), utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;
