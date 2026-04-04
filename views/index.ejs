@@ -1,41 +1,40 @@
 <h1>Welcome to CSE Motors</h1>
-<%- messages() %>
-    <div class="hero-image">
-        <img class="hero-img" src="/images/vehicles/delorean.jpg" alt="delorian-model-review">
-        <div class="cta-box">
-            <p class="v-des">
-                <span id="v-name">
-                    <%= vehicleName%>
-                </span>
-                <br>
-                <%= vehicleDescription %>
-            </p>
-            <img class="cta-button" src="/images/site/own_today.png" alt="cta-button">
-        </div>
+<div class="hero-image">
+    <img class="hero-img" src="/images/vehicles/delorean.jpg" alt="delorian-model-review">
+    <div class="cta-box">
+        <p class="v-des">
+            <span id="v-name">
+                <%= vehicleName%>
+            </span>
+            <br>
+            <%= vehicleDescription %>
+        </p>
+        <img class="cta-button" src="/images/site/own_today.png" alt="cta-button">
     </div>
-    <!-- Upgrades and Reviews Section -->
-    <div class="Titles">
-        <h2>Upgrades</h2>
-        <h2>Reviews</h2>
-    </div>
-    <div class="uprev">
-        <div class="upgrades">
-            <% uprev.upgrades.forEach(item=> { %>
-                <div class='upgrade-box'>
-                    <div class="upgrade-img">
-                        <img src='<%= item[1] %>' alt='<%= item[0] %>'>
-                    </div>
-                    <h3>
-                        <%= item[0] %>
-                    </h3>
+</div>
+<!-- Upgrades and Reviews Section -->
+<div class="Titles">
+    <h2>Upgrades</h2>
+    <h2>Reviews</h2>
+</div>
+<div class="uprev">
+    <div class="upgrades">
+        <% uprev.upgrades.forEach(item=> { %>
+            <div class='upgrade-box'>
+                <div class="upgrade-img">
+                    <img src='<%= item[1] %>' alt='<%= item[0] %>'>
                 </div>
-                <% }) %>
-        </div>
-        <div class="reviews">
-            <% uprev.reviews.forEach(item=> { %>
-                <h2>
-                    <%= item %>
-                </h2>
-                <% }) %>
-        </div>
+                <h3>
+                    <%= item[0] %>
+                </h3>
+            </div>
+            <% }) %>
     </div>
+    <div class="reviews">
+        <% uprev.reviews.forEach(item=> { %>
+            <h2>
+                <%= item %>
+            </h2>
+            <% }) %>
+    </div>
+</div>

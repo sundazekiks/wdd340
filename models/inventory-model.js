@@ -101,4 +101,5 @@ async function updateInventory(
 
 
 
+
 module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, addInventory, updateInventory } 

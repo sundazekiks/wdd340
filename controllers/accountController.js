@@ -8,10 +8,14 @@ require('dotenv').config()
 
 async function buildManagement(req, res, next) {
     let nav = await utilities.getNav()
-
+    const firstName = res.locals.firstName
+    const user = res.locals.user
+    console.log(firstName, user)
     res.render("account/account_management", {
         title: "Account Management",
         nav,
+        firstName,
+        user
     })
 }
 
@@ -21,6 +25,7 @@ async function buildManagement(req, res, next) {
 
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
+
     res.render("account/login", {
         title: "Login",
         nav,
@@ -32,6 +37,7 @@ async function buildLogin(req, res, next) {
 * *************************************** */
 async function buildRegister(req, res, next) {
     let nav = await utilities.getNav()
+
     res.render("account/register", {
         title: "Register",
         nav,
@@ -54,7 +60,7 @@ async function registerAccount(req, res) {
         account_email,
         hashedPassword
     )
-    console.log(regResult);
+
     if (regResult) {
 
         req.flash(
@@ -82,8 +88,7 @@ async function loginAccount(req, res) {
 
     const accountData = await accountModel.getAccountByEmail(email)
 
-    console.log('Logging in')
-    console.log(accountData)
+
 
     if (!accountData) {
         req.flash("notice", "Please check your email and try again.")
@@ -123,4 +128,96 @@ async function loginAccount(req, res) {
 
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, loginAccount, buildManagement }
+async function logout(req, res) {
+    res.clearCookie("jwt")
+
+    if (req.cookies.jwt) {
+        req.flash("notice", "Logout failed. Please try again.")
+        return res.redirect("/")
+    }
+    res.redirect("/account/login")
+}
+
+async function updateAccount(req, res) {
+    let nav = await utilities.getNav()
+    let accountData = await accountModel.getAccountById(res.locals.userId)
+    const { account_firstname, account_lastname, account_email } = accountData
+    res.render("account/updateInfo", {
+        title: "Update Account Information",
+        nav,
+        account_firstname,
+        account_lastname,
+        account_email
+    })
+}
+
+async function updateAccountInfo(req, res) {
+
+    let nav = await utilities.getNav()
+    const { account_firstname, account_lastname, account_email } = req.body
+    const account_id = res.locals.userId
+
+    const updateResult = await accountModel.updateAccountInfo(account_id, account_firstname, account_lastname, account_email)
+    console.log(updateResult)
+    if (updateResult) {
+        req.flash("notice", "Account information updated successfully.")
+        res.render("account/updateInfo", {
+            title: "Update Account Information",
+            nav,
+            account_firstname,
+            account_lastname,
+            account_email
+        })
+    } else {
+        req.flash("notice", "Sorry, the update failed.")
+        res.status(501).render("account/updateInfo", {
+            title: "Update Account Information",
+            nav,
+            account_firstname,
+            account_lastname,
+            account_email
+        })
+    }
+}
+
+async function buildUpdatePassword(req, res) {
+    let nav = await utilities.getNav()
+    res.render("account/updatePassword", {
+        title: "Update Password",
+        nav,
+    })
+}
+
+async function updatePassword(req, res) {
+    let nav = await utilities.getNav()
+    const { current_password, new_password } = req.body
+    const account_id = res.locals.userId
+
+    const accountData = await accountModel.getAccountById(account_id)
+
+    if (await bcrypt.compare(current_password, accountData.account_password)) {
+        const hashedPassword = await bcrypt.hash(new_password, 10)
+        const updateResult = await accountModel.updatePassword(account_id, hashedPassword)
+
+        if (updateResult) {
+            req.flash("notice", "Password updated successfully.")
+            res.render("account/updatePassword", {
+                title: "Update Password",
+                nav,
+            })
+        } else {
+            req.flash("notice", "Sorry, the update failed.")
+            res.status(501).render("account/updatePassword", {
+                title: "Update Password",
+                nav,
+            })
+        }
+    } else {
+        req.flash("notice", "Current password is incorrect. Please try again.")
+        res.status(400).render("account/updatePassword", {
+            title: "Update Password",
+            nav,
+        })
+    }
+}
+module.exports = { buildLogin, buildRegister, registerAccount, loginAccount, buildManagement, logout, updateAccount, updateAccountInfo, buildUpdatePassword, updatePassword };

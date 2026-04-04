@@ -156,6 +156,14 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 Util.checkLogin = (req, res, next) => {
+    const auth = req.cookies.jwt
+    const userId = jwt.verify(auth, process.env.ACCESS_TOKEN_SECRET).account_id
+    res.locals.userId = userId
+    const firstName = jwt.verify(auth, process.env.ACCESS_TOKEN_SECRET).account_firstname
+    const user = jwt.verify(auth, process.env.ACCESS_TOKEN_SECRET).account_type
+    res.locals.firstName = firstName
+    res.locals.user = user
+
     if (res.locals.loggedin) {
 
         next()
@@ -171,6 +179,17 @@ Util.checkIfLoggedIn = (req, res, next) => {
         return res.redirect("/account/")
     } else {
         next()
+    }
+}
+
+
+Util.checkRoute = (req, res) => {
+    const isLoggedIn = req.cookies.jwt;
+
+    if (isLoggedIn) {
+        return res.status(200).json({ loggedIn: true });
+    } else {
+        return res.status(401).json({ loggedIn: false });
     }
 }
 

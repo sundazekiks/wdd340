@@ -65,6 +65,7 @@ app.use(utilities.checkJWTToken);
  *************************/
 
 app.use(static)
+app.get('/refresh', utilities.checkRoute)
 app.get('/', utilities.handleErrors(baseController.buildHome));
 app.use('/inv', inventoryRoute)
 app.use('/account', accountRoute)

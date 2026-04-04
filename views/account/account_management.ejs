@@ -1,7 +1,11 @@
 <h1><%- title %></h1>
 <%- messages() %>
-    <h2>Hello There, Welome!</h2>
-    <div class="management">
-        <a href="/account/update">Update Account Information</a>
-        <a href="/account/update-password">Change Password</a>
-    </div>
+    <h2>Welome <%- firstName %>!</h2>
+    <% if (user=="Admin" ) {%>
+        <h3>Manage Inventory</h3>
+        <p><a href="/inv">Click here to manage inventory</a></p>
+        <% } %>
+            <div class="management">
+                <a href="/account/update">Update Account Information</a>
+                <a href="/account/update-password">Change Password</a>
+            </div>

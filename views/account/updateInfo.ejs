@@ -1,0 +1,12 @@
+<h1>Update Information</h1>
+<%- messages() %>
+    <p>Use the form below to update your account information.</p>
+    <form action="/account/update" method="post" id="inventory-form">
+        <label for="account_firstname">First Name:</label>
+        <input type="text" id="account_firstname" name="account_firstname" value="<%= account_firstname %>" required>
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" id="account_lastname" name="account_lastname" value="<%= account_lastname %>" required>
+        <label for="account_email">Email:</label>
+        <input type="email" id="account_email" name="account_email" value="<%= account_email %>" required>
+        <button type="submit">Update Information</button>
+    </form>

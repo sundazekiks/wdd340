@@ -3,6 +3,7 @@ const path = require('path')
 const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/")
+const isAdmin = require("../middlewares/admin.middleware")
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -22,7 +23,7 @@ router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildVechi
 
 router.get("/error-custom", utilities.handleErrors(invController.sendError));
 
-router.get('/', utilities.handleErrors(invController.buildManagement))
+router.get('/', isAdmin, utilities.handleErrors(invController.buildManagement))
 
 router.get('/add-classification', utilities.handleErrors(invController.buildAddClass))
 
