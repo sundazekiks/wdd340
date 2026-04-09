@@ -24,6 +24,8 @@ router.get('/update-password', utilities.checkLogin, utilities.handleErrors(acco
 
 router.post('/update-password', utilities.checkLogin, utilities.handleErrors(accountController.updatePassword))
 
+// Client list their 
+
 
 module.exports = router;
 

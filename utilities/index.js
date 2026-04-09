@@ -79,7 +79,7 @@ Util.buildClassificationGrid = async function (data) {
 }
 
 Util.buildVehicleDetailPage = async (data) => {
-    const vehicle = data[0];
+    const vehicle = data;
     let container = '<div id="detail-wrapper">'
     if (vehicle) {
         container += `
@@ -90,6 +90,7 @@ Util.buildVehicleDetailPage = async (data) => {
                     ${vehicle.inv_model} 
                     ${vehicle.inv_year} 
                 </h1>
+                <p style="display:none;" id='vehiclePrice'>${vehicle.inv_price}</p>
                 <p> $ ${new Intl.NumberFormat('en-Us').format(vehicle.inv_price)}</p>
             </div>
         </section>

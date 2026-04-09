@@ -29,7 +29,7 @@ async function getInventoryByVehicleId(vehicleId) {
         WHERE inv_id = $1
         `, [vehicleId]);
 
-    return data.rows[0]
+    return data.rows[0];
 
 }
 

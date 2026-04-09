@@ -37,7 +37,7 @@ invCont.buildVechicleDetails = async (req, res, next) => {
         res.render("./inventory/detailsPage",
 
             {
-                title: data[0].make,
+                title: data.inv_make,
                 container,
                 nav
             }

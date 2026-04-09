@@ -1,6 +1,7 @@
 const accountLogin = document.getElementById("accountLogin")
 const accountLogout = document.getElementById("accountLogout")
-
+const vehiclePrice = document.getElementById("vehiclePrice")
+console.log(parseInt(vehiclePrice.textContent))
 async function checkLoginStatus() {
 
     const res = await fetch('/refresh',
