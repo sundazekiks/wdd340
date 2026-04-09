@@ -1,34 +1,78 @@
 #amortize {
-    display: block;
-    width: 100px;
-    height: 30px;
-    background-color: #007BFF;
-    color: white;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: var(--custom-bg2);
+  color: #ffffff;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  margin-top: 20px;
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+#amortize:hover {
+  background-color: var(--custom-bg2-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  opacity: 1;
 }
 
 #term-form {
-    width: fit-content;
-    display: flex;
-    gap: 10px;
-    padding: 10px 20px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--custom-bg2-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(13, 99, 77, 0.15);
 }
 
 #calculate {
-    cursor: pointer;
+  cursor: pointer;
+  padding: 7px 18px;
+  background: var(--custom-bg2);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 14px;
+  transition: background var(--transition), transform var(--transition);
+}
+
+#calculate:hover {
+  background: var(--custom-bg2-dark);
+  transform: translateY(-1px);
 }
 
 .accountTab {
-    display: flex;
-    gap: 5px;
-    border: 1px solid black;
-    justify-content: space-around;
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(13, 99, 77, 0.2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  justify-content: space-around;
+  background: var(--custom-bg);
+  box-shadow: var(--shadow-sm);
+}
 
-    p {
-        padding: 0;
-    }
+.accountTab p {
+  padding: 10px 16px;
+  margin: 0;
+  font-size: 14px;
+  border-right: 1px solid rgba(13, 99, 77, 0.12);
+  transition: background var(--transition);
+}
+
+.accountTab p:last-child {
+  border-right: none;
+}
+
+.accountTab p:hover {
+  background: var(--custom-bg2-light);
 }
