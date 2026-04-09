@@ -194,6 +194,39 @@ Util.checkRoute = (req, res) => {
     }
 }
 
+Util.BuildAmortizationTable = async (vehicleId, term, annual_interest) => {
+    const vehicleDetails = await invModel.getVehiclePrice(vehicleId);
+    const r = parseFloat(annual_interest) / 12;
+
+    let pv = parseFloat(vehicleDetails.inv_price); // use let, not const
+    const n = Number(term) * 12;
+
+    const pmt = parseFloat((r * pv) / (1 - (1 + r) ** -n).toFixed(2));
+    let amortizationTable = "";
+    let counter = 1;
+
+    while (pv > 0) {
+        const interest = pv * r;
+        const principal = pmt - interest;
+        const endingBalance = pv - principal;
+
+        amortizationTable += "<div class='accountTab'>"
+        amortizationTable += `<p> ${counter}</p>`                            // Month
+        amortizationTable += `<p>$ ${pv.toFixed(2)}</p>`                     // Beginning Balance
+        amortizationTable += `<p>$ ${pmt.toFixed(2)}</p>`                    // PMT
+        amortizationTable += `<p>$ ${interest.toFixed(2)}</p>`               // Interest
+        amortizationTable += `<p>$ ${principal.toFixed(2)}</p>`              // Principal
+        amortizationTable += `<p>$ ${new Intl.NumberFormat("en-US").format(Math.max(0, endingBalance).toFixed(2))}</p>` // Ending Balance
+        amortizationTable += "</div>"
+
+        pv = endingBalance;
+        counter++;
+
+        if (counter > n + 1) break; // safety break to avoid infinite loop
+    }
+
+    return amortizationTable;
+}
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

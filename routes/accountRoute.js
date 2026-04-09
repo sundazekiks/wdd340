@@ -24,8 +24,10 @@ router.get('/update-password', utilities.checkLogin, utilities.handleErrors(acco
 
 router.post('/update-password', utilities.checkLogin, utilities.handleErrors(accountController.updatePassword))
 
-// Client list their 
+// Amortization Page
+router.get('/amortization/:vehicleId', utilities.handleErrors(accountController.buildAmortization))
 
+router.post('/amortization/:vehicleId', utilities.handleErrors(accountController.Amortize))
 
 module.exports = router;
 

@@ -39,7 +39,8 @@ invCont.buildVechicleDetails = async (req, res, next) => {
             {
                 title: data.inv_make,
                 container,
-                nav
+                nav,
+                v_id: data.inv_id,
             }
         )
 

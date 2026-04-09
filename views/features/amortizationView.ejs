@@ -1,0 +1,29 @@
+<h1>
+    <%= title %>
+</h1>
+<!-- Terms -->
+<form action="<%- vehicleId %>" id="term-form" method="post">
+    <label for="terms">Term</label>
+    <select name="terms" id="terms">
+        <option value="" selected disabled>Pick a term</option>
+        <option value="3">3 Years</option>
+        <option value="10">10 Years</option>
+        <option value="20">20 Years</option>
+        <option value="30">30 Years</option>
+    </select>
+    <input id="calculate" type="submit" value="Calculate">
+</form>
+<% if (term) { %>
+    <p>Term: <%= term %> years</p>
+    <%} %>
+        <div>
+            <div class="accountTab">
+                <p>Month</p>
+                <p>Beginning Balance</p>
+                <p>Payment</p>
+                <p>Interest</p>
+                <p>Principal</p>
+                <p>Ending Balance</p>
+            </div>
+            <%- amortizationTable %>
+        </div>

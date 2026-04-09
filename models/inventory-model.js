@@ -99,7 +99,18 @@ async function updateInventory(
     }
 }
 
+async function getVehiclePrice(vehicleId) {
+    const data = await pool.query(`
+        SELECT *
+        FROM public.inventory
+        WHERE inv_id = $1
+        `, [vehicleId]);
+
+    return data.rows[0];
+
+}
 
 
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, addInventory, updateInventory } 
+
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, addInventory, updateInventory, getVehiclePrice } 

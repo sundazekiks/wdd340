@@ -219,4 +219,32 @@ async function updatePassword(req, res) {
         })
     }
 }
-module.exports = { buildLogin, buildRegister, registerAccount, loginAccount, buildManagement, logout, updateAccount, updateAccountInfo, buildUpdatePassword, updatePassword };
+
+async function buildAmortization(req, res) {
+    let nav = await utilities.getNav()
+    const vehicleId = req.params.vehicleId
+    const amortizationTable = await utilities.BuildAmortizationTable(vehicleId, 3, 0.03)
+    res.render("features/amortizationView", {
+        title: "Amortization Schedule",
+        nav,
+        amortizationTable,
+        vehicleId,
+        term: 3
+    })
+}
+
+async function Amortize(req, res) {
+    let nav = await utilities.getNav()
+    let term = req.body.terms ? req.body.terms : 3;
+    console.log(term)
+    const vehicleId = req.params.vehicleId
+    const amortizationTable = await utilities.BuildAmortizationTable(vehicleId, term, 0.03)
+    res.render("features/amortizationView", {
+        title: "Amortization Schedule",
+        nav,
+        amortizationTable,
+        vehicleId,
+        term
+    })
+}
+module.exports = { buildLogin, buildRegister, registerAccount, loginAccount, buildManagement, logout, updateAccount, updateAccountInfo, buildUpdatePassword, updatePassword, buildAmortization, Amortize };
